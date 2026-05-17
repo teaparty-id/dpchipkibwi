@@ -97,77 +97,16 @@
         <div
           class="flex w-full justify-center md:justify-between flex-wrap gap-5"
         >
-          <div>
-            <NuxtLink to="#">
+          <div v-for="cardData in cards">
+            <NuxtLink :to="cardData.to">
               <div class="card bg-base-100 w-64 shadow-sm">
                 <figure>
-                  <img
-                    src="https://img.daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.webp"
-                    alt="Shoes"
-                  />
+                  <img :src="cardData.image" />
                 </figure>
                 <div class="card-body">
-                  <h2 class="card-title">Card Title</h2>
+                  <h2 class="card-title">{{ cardData.title }}</h2>
                   <p>
-                    A card component has a figure, a body part, and inside body
-                    there are title and actions parts
-                  </p>
-                </div>
-              </div>
-            </NuxtLink>
-          </div>
-          <div>
-            <NuxtLink to="#">
-              <div class="card bg-base-100 w-64 shadow-sm">
-                <figure>
-                  <img
-                    src="https://img.daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.webp"
-                    alt="Shoes"
-                  />
-                </figure>
-                <div class="card-body">
-                  <h2 class="card-title">Card Title</h2>
-                  <p>
-                    A card component has a figure, a body part, and inside body
-                    there are title and actions parts
-                  </p>
-                </div>
-              </div>
-            </NuxtLink>
-          </div>
-          <div>
-            <NuxtLink to="#">
-              <div class="card bg-base-100 w-64 shadow-sm">
-                <figure>
-                  <img
-                    src="https://img.daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.webp"
-                    alt="Shoes"
-                  />
-                </figure>
-                <div class="card-body">
-                  <h2 class="card-title">Card Title</h2>
-                  <p>
-                    A card component has a figure, a body part, and inside body
-                    there are title and actions parts
-                  </p>
-                </div>
-              </div>
-            </NuxtLink>
-          </div>
-          <div>
-            <NuxtLink to="#">
-              <div class="card bg-base-100 w-64 shadow-sm">
-                <figure>
-                  <img
-                    src="https://img.daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.webp"
-                    alt="Shoes"
-                  />
-                </figure>
-                <div class="card-body">
-                  <h2 class="card-title">Card Title</h2>
-                  <p>
-                    A card component has a figure, a body part, and inside body
-                    there are title and actions parts
+                    {{ cardData.desc }}
                   </p>
                 </div>
               </div>
@@ -211,56 +150,53 @@
 
 <script setup lang="ts">
 import type { BlogPostProps } from "@nuxt/ui";
-import type { PageFeatureProps, ButtonProps } from "@nuxt/ui";
+import { getLoremImage, getLoremImages } from "~/utils/image";
 
-const items = [
-  "https://picsum.photos/1920/1080?random=1",
-  "https://picsum.photos/1920/1080?random=2",
-  "https://picsum.photos/1920/1080?random=3",
-];
-
+const items = getLoremImages(1920, 1080, 3);
+const cards = ref([
+  {
+    title: "Anggota",
+    image: getLoremImage(900, 600),
+    desc: "Seluruh anggota DPC HIPKI Banyuwangi",
+    to: "#",
+  },
+  {
+    title: "Agenda dan Schedule",
+    image: getLoremImage(900, 600),
+    desc: "Jadwal agenda dan kegiatan DPC HIPKI Banyuwangi",
+    to: "#",
+  },
+  {
+    title: "Gallery",
+    image: getLoremImage(900, 600),
+    desc: "Dokumentasi hasil kegiatan atau event",
+    to: "#",
+  },
+  {
+    title: "Kontak dan Informasi",
+    image: getLoremImage(900, 600),
+    desc: "Informasi kontak untuk menghubungi pengurus",
+    to: "#",
+  },
+]);
 const posts = ref<BlogPostProps[]>([
   {
-    title: "Nuxt Icon v1",
-    description: "Discover Nuxt Icon v1!",
-    image: "https://nuxt.com/assets/blog/nuxt-icon/cover.png",
+    title: "Pelaksanaan Pelatihan di LKP Desy Education",
+    description: "Isi dan detail pelatihan di LKP Desy Banyuwangi",
+    image: getLoremImage(512, 512),
     date: "2024-11-25",
   },
   {
-    title: "Nuxt 3.14",
-    description: "Nuxt 3.14 is out!",
-    image: "https://nuxt.com/assets/blog/v3.14.png",
-    date: "2024-11-04",
+    title: "Pelaksanaan Pelatihan di LKP Desy Education",
+    description: "Isi dan detail pelatihan di LKP Desy Banyuwangi",
+    image: getLoremImage(512, 512),
+    date: "2024-11-25",
   },
   {
-    title: "Nuxt 3.13",
-    description: "Nuxt 3.13 is out!",
-    image: "https://nuxt.com/assets/blog/v3.13.png",
-    date: "2024-08-22",
-  },
-]);
-
-const features = ref<PageFeatureProps[]>([
-  {
-    title: "Icons",
-    description:
-      "Nuxt UI integrates with Nuxt Icon to access over 200,000+ icons from Iconify.",
-    icon: "i-lucide-smile",
-    to: "/docs/getting-started/integrations/icons",
-  },
-  {
-    title: "Fonts",
-    description:
-      "Nuxt UI integrates with Nuxt Fonts to provide plug-and-play font optimization.",
-    icon: "i-lucide-a-large-small",
-    to: "/docs/getting-started/integrations/fonts",
-  },
-  {
-    title: "Color Mode",
-    description:
-      "Nuxt UI integrates with Nuxt Color Mode to switch between light and dark.",
-    icon: "i-lucide-sun-moon",
-    to: "/docs/getting-started/integrations/color-mode",
+    title: "Pelaksanaan Pelatihan di LKP Desy Education",
+    description: "Isi dan detail pelatihan di LKP Desy Banyuwangi",
+    image: getLoremImage(512, 512),
+    date: "2024-11-25",
   },
 ]);
 </script>
